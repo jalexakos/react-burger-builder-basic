@@ -1,3 +1,9 @@
+# Burger Builder (Basic)
+
+Learning React by building a React project - the burger builder (basic version).
+
+From the Udemy course by Academind (found here: https://www.udemy.com/course/react-the-complete-guide-incl-redux).
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
