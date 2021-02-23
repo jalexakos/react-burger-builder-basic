@@ -4,11 +4,6 @@ import Aux from '../../../hoc/Auxiliary';
 import Button from '../../UI/Button/Button';
 
 class OrderSummary extends Component {
-    
-    // This could be a functional component; only made it a class component because we wanted to use the hook to check when it updated
-    componentDidUpdate(){
-        console.log('[OrderSummary] WillUpdate');
-    };
 
     render(){   
         const ingredientSummary = Object.keys(this.props.ingredients)
