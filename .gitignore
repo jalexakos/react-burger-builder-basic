@@ -2,6 +2,9 @@
 
 # dependencies
 .env
+.firebase
+.firebaserc
+firebase.json
 /node_modules
 /.pnp
 .pnp.js
