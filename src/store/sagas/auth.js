@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import * as actions from '../actions/index';
 
-export function* logoutSaga(action) { //the start after function turns it into a generator - a generator is a function that can be executed incrementally
+export function* logoutSaga(action) { //the star after function turns it into a generator - a generator is a function that can be executed incrementally
     yield localStorage.removeItem('token');
     yield localStorage.removeItem('expirationDate');
     yield localStorage.removeItem('userId');
@@ -14,7 +14,7 @@ export function* logoutSaga(action) { //the start after function turns it into a
 export function* checkAuthTimeoutSaga(action) {
     yield delay(action.expirationTime * 1000);
     yield put(actions.logout());
-}
+  }
 
 export function* authUserSaga(action){
     yield put(actions.authStart());
@@ -43,17 +43,23 @@ export function* authUserSaga(action){
 }
 
 export function* authCheckStateSaga(action) {
-    const token = yield localStorage.getItem('token');
+    const token = yield localStorage.getItem("token");
     if (!token) {
-        yield put(actions.logout());
+      yield put(actions.logout());
     } else {
-        const expirationDate = new Date(localStorage.getItem('expirationDate'));
-        if (expirationDate <= new Date()) {
-            yield put(actions.logout())
-        } else {
-            const userId = localStorage.getItem('userId');
-            yield put(actions.authSuccess(token, userId));
-            yield put(actions.checkAuthTimeout((expirationDate.getTime() - new Date().getTime() / 1000)))
-        }
+      const expirationDate = yield new Date(
+        localStorage.getItem("expirationDate")
+      );
+      if (expirationDate <= new Date()) {
+        yield put(actions.logout());
+      } else {
+        const userId = yield localStorage.getItem("userId");
+        yield put(actions.authSuccess(token, userId));
+        yield put(
+          actions.checkAuthTimeout(
+            (expirationDate.getTime() - new Date().getTime()) / 1000
+          )
+        );
+      }
     }
-}
+  }
